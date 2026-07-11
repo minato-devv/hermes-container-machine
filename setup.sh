@@ -22,7 +22,7 @@ container run --detach \
 	--cpus 2 \
 	--volume "${DATA_DIRECTORY}:/opt/data" \
 	--port "127.0.0.1:8642:8642" \
-	--port "127.0.0.1:9119:9119" \
+	--publish "127.0.0.1:9119:9119" \
 	--environment HERMES_DASHBOARD=1 \
 	--environment HERMES_DASHBOARD_HOST="${HERMES_DASHBOARD_HOST:-0.0.0.0}" \
 	nousresearch/hermes-agent gateway run
