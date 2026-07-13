@@ -10,11 +10,15 @@ Why container machine:
 * choice of mounting entire home directory
 * OCI images for custom setups
 
-Choice base image: **`debian:bookworm-slim`**
+Choice base image: **`debian:bookworm-slim`**.
 
-Choice `init` system: **runit** with **`rnuit-init`** for linking to `/sbin/init`. `systemd`/`OpenRC` is opt-out with hardware checks, requiring a need to mask and strip them beforehand; since we are in a container, `systemd`/`OpenRC` is too bloated for this circumstance, `runit` is simple, light, and efficient.
+`alpine` is problematic for this use case. `ubuntu` is slightly larger than `debian`, but still completely viable.
 
-Hermes on Linux minimum requirements to run the installation script:
+Choice `init` system: **`runit`** with **`rnuit-init`** for linking to `/sbin/init`. 
+
+`systemd`/`OpenRC` is opt-out with hardware checks, requiring a need to mask and strip them beforehand; since we are in a container, `systemd`/`OpenRC` is too bloated for this circumstance, `runit` is simple, light, and efficient.
+
+Hermes on Linux minimally requires these run the installation script:
 * `git`
 * `curl` (consequently, `ca-certificates`)
 * `xz-utils`
