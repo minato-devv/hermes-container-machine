@@ -40,7 +40,7 @@ RUN apt-get update && \
 Build the image:
 
 ```bash
-container build -t debian:hermes --file ./debian/Containerfile .
+container build -t debian:hermes --file ./Containerfile .
 ```
 
 Create and configure the machine:
@@ -53,7 +53,7 @@ container machine stop # resources take action after a reboot
 container machine run
 ```
 
-Alternatively, you can use the (`install.sh`)[install.sh] script provided.
+Alternatively, you can use the [`install.sh`](install.sh) script provided.
 
 Now running in a login shell, installation is a curl command:
 ```bash

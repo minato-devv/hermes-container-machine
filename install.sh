@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Provide the desired machine name as the first positional argument and the corresponding image that was built as the second positional argument
+
 create_machine() {
 
 	local name="$1"
