@@ -10,9 +10,9 @@ Why container machine:
 * choice of mounting entire home directory
 * OCI images for custom setups
 
-Choice base image: **debian:bookworm-slim**
+Choice base image: **`debian:bookworm-slim`**
 
-Choice `init` system: **runit** with **rnuit-init** for linking to `/sbin/init`
+Choice `init` system: **runit** with **`rnuit-init`** for linking to `/sbin/init`. `systemd`/`OpenRC` is opt-out with hardware checks, requiring a need to mask and strip them beforehand; since we are in a container, `systemd`/`OpenRC` is too bloated for this circumstance, `runit` is simple, light, and efficient.
 
 Hermes on Linux minimum requirements to run the installation script:
 * `git`
@@ -23,7 +23,7 @@ Additional packages:
 
 To minimize attack surface, `sudo` is not installed, and thus browser automation will not be set up; this setup is headless, no GUI or desktop app (requires `build-essential` on Debian-based distros).
 
-Official Hermes documentation states that `ripgrep` and `ffmpeg` are automatically installed if not detected, however, this did not work, so we install them manually.
+Official Hermes documentation states that `ripgrep` and `ffmpeg` are automatically installed if not detected, however, from experience this does not always work, so install them manually.
 
 Final + minimal image:
 
