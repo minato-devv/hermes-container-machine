@@ -47,7 +47,7 @@ Build the image:
 container build -t debian:hermes --file ./Containerfile .
 ```
 
-Create and configure the machine:
+Create and configure the machine. We disable home-mount by defalut for isolation from personal files:
 
 ```bash
 container machine create --home-mount=none --name <machine_name> debian:hermes
