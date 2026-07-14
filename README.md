@@ -30,8 +30,6 @@ Hermes on Linux minimally requires these run the installation script:
 
 Additional packages:
 
-To minimize attack surface, `sudo` is not installed, and thus browser automation will not be set up; this setup is headless, no GUI or desktop app (requires `build-essential` on Debian-based distros).
-
 Official Hermes documentation states that `ripgrep` and `ffmpeg` are automatically installed if not detected, however, from experience this does not always work, so install them manually.
 
 ## Setup
@@ -43,7 +41,7 @@ FROM debian:bookworm-slim
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
-	git curl ca-certificates ffmpeg ripgrep xz-utils runit runit-init && \
+	git curl ca-certificates ffmpeg ripgrep xz-utils runit runit-init sudo && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 ```
