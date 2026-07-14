@@ -34,7 +34,9 @@ To minimize attack surface, `sudo` is not installed, and thus browser automation
 
 Official Hermes documentation states that `ripgrep` and `ffmpeg` are automatically installed if not detected, however, from experience this does not always work, so install them manually.
 
-Final + minimal image:
+## Setup
+
+Minimal image:
 
 ```Containerfile
 FROM debian:bookworm-slim
