@@ -3,34 +3,28 @@
 Why container machine:
 * persistent filesystem
 * run and manage background services
-* isolation of a VM
-* seamless booting and shut down
 * custom `/sbin/init`
-* automatic user creation
+* automatic user mirroring
 * choice of mounting entire home directory
-* OCI images for custom setups
 
 Choice base image: **`debian:bookworm-slim`**.
 
-`alpine` is problematic for this use case. `ubuntu` is slightly larger than `debian`, but still completely viable.
-
-Choice `init` system: **`runit`** with **`rnuit-init`** for linking to `/sbin/init`. 
-
-`systemd`/`OpenRC` is opt-out with hardware checks, requiring a need to mask and strip them beforehand; since we are in a container, `systemd`/`OpenRC` is too bloated for this circumstance, `runit` is simple, light, and efficient.
+Choice `init` system: **`runit`** with **`rnuit-init`** for linking to `/sbin/init`. `runit` is simple, light, and efficient.`
 
 ## Requirements:
 
 * macOS 26+
 * [apple/container](https://github.com/apple/container.git)
 
-Hermes on Linux minimally requires these run the installation script:
+At the very least, Hermes on Linux requires:
 * `git`
 * `curl` (consequently, `ca-certificates`)
 * `xz-utils`
 
-Additional packages:
+Additional packages (to be sure):
 
-Official Hermes documentation states that `ripgrep` and `ffmpeg` are automatically installed if not detected, however, from experience this does not always work, so install them manually.
+* `ripgrep`
+* `fd-find`
 
 ## Setup
 
@@ -55,16 +49,13 @@ container build -t debian:hermes --file ./Containerfile .
 Create and configure the machine. We disable home-mount by default for isolation from personal files:
 
 ```bash
-container machine create --home-mount=none --name <machine_name> debian:hermes
-container machine set -n <machine_name> cpus=2 memory=4G # Hermes documentation recommend these minimums
-container machine set-default <machine_name>
-container machine stop # resources take action after a reboot
+container machine create --home-mount=none --name <machine_name> --set-default --cpus 2 --memory 4G debian:hermes
 container machine run
 ```
 
 Alternatively, you can use the [`install.sh`](install.sh) script provided.
 
-Now running in a login shell, installation is a curl command:
+Now running in a login shell, installation of Hermes is simply one curl command:
 ```bash
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --skip-browser
 ```

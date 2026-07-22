@@ -1,6 +1,6 @@
 # ubuntu for `systemd`
 
-This Dockerfile is from apple's exmaple in `docs/container-machine.md`:
+This Dockerfile is from apple's example in `docs/container-machine.md`, in addition to the required packages:
 
 ```Dockerfile
 FROM ubuntu:24.04
@@ -30,5 +30,5 @@ RUN systemctl disable \
 RUN sed -i -e 's/^AcceptEnv LANG LC_\*$/#AcceptEnv LANG LC_*/' /etc/ssh/sshd_config
 ```
 
-Notes:
+## Notes:
 * removal of `openssh-server` and the last `sed` command will not allow the machine to boot due to lack of `/sbin/init` for some mysterious reason
