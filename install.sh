@@ -12,7 +12,7 @@ create_machine() {
 		exit 1
 	fi
 
-	container machine create --set-default --cpus 2 --memory 4G --home-mount=none --name "$name" "$image"
+	container machine create --set-default --no-boot --cpus 2 --memory 4G --home-mount=none --name "$name" "$image"
 	container machine run
 }
 

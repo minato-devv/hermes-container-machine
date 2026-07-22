@@ -9,7 +9,7 @@ ENV container container
 
 RUN apt-get update && \
     apt-get install -y \
-    dbus systemd openssh-server xz-utils curl ripgrep fd-find sudo && \
+    dbus git systemd openssh-server xz-utils curl ripgrep fd-find sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     yes | unminimize
